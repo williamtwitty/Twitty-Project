@@ -1,3 +1,2 @@
-select *
-from visits
-where api_key = $1
+select count(*)
+from visits;

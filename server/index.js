@@ -5,8 +5,11 @@ const express = require('express')
     , session = require('express-session')
     , passport = require('passport')
     , Auth0Strategy = require('passport-auth0')
+    , cors = require('cors')
+    , KeyGenerator = require('uuid-key-generator')
 
 const app = express();
+app.use(cors())
 app.use(session({
     secret: process.env.SECRET,
     resave: false, 
@@ -29,12 +32,16 @@ passport.use(new Auth0Strategy({
     //database reqs
     const db = app.get('db');
        // console.log(profile); need this to check what we will need from the req object
+       //console.log('getting user from database');
     db.get_user([profile.identities[0].user_id]).then( user => {
        // console.log(user);
+       //console.log('found user');
         if (user[0]) {
             done(null, user[0].id)
         } else {
-            db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id]).then( user => {
+            //console.log(profile);
+            var keygen = new KeyGenerator(256, KeyGenerator.BASE36)
+            db.create_user([profile.displayName, profile.emails[0].value, profile.picture, profile.identities[0].user_id, keygen.generateKey()]).then( user => {
                 done(null, user[0].id)
             })
         }
@@ -43,12 +50,14 @@ passport.use(new Auth0Strategy({
 ))
 
 passport.serializeUser(function(userId, done) {
-    // console.log('serialize', userId);
+    console.log('serialize', userId);
      done(null, userId)
  })
  
  passport.deserializeUser(function(userId, done) {
+     console.log('before call');
      app.get('db').current_user([userId]).then( user => {
+         console.log(user);
          done(null, user[0])
      })
  })
@@ -56,13 +65,13 @@ passport.serializeUser(function(userId, done) {
  app.get('/auth', passport.authenticate('auth0'))
  
  app.get('/auth/callback', passport.authenticate('auth0', {
-     successRedirect: 'http://localhost:3000/#/private',  // send to front end port
+     successRedirect: 'http://localhost:3000/#/privatedata',  // send to front end port
      failureRedirect: '/auth'
  }))
  
  app.get('/auth/user', (req, res) => {
      // console.log('session', req.session);
-     // console.log('req.user', req.user);
+     console.log('req.user', req.user);
      if (!req.user) {
          return res.status(404).send('User not found')
      } else {
@@ -76,8 +85,11 @@ passport.serializeUser(function(userId, done) {
  })
  const ctrl = require('./controller/controller')
 
+ app.get('/api/getvisits', ctrl.getVisits)
+ app.get('/api/getclientvisits', ctrl.getClientVisits)
  app.post('/api/visit', ctrl.visit);
  app.put(`/api/endvisit/:id`, ctrl.endVisit)
+
 
 
 
