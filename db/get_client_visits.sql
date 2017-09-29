@@ -1,3 +1,3 @@
 select count(*)
 from visits
-where api_key = $1
+where trackerusers_id = $1

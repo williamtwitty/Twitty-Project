@@ -34,7 +34,7 @@ passport.use(new Auth0Strategy({
        // console.log(profile); need this to check what we will need from the req object
        //console.log('getting user from database');
     db.get_user([profile.identities[0].user_id]).then( user => {
-       // console.log(user);
+       //console.log(user);
        //console.log('found user');
         if (user[0]) {
             done(null, user[0].id)
@@ -69,8 +69,8 @@ passport.serializeUser(function(userId, done) {
      failureRedirect: '/auth'
  }))
  
- app.get('/auth/user', (req, res) => {
-     // console.log('session', req.session);
+ app.get('/auth/user', passport.authenticate('auth0'), (req, res) => {
+    //  console.log('session', req.session);
      console.log('req.user', req.user);
      if (!req.user) {
          return res.status(404).send('User not found')

@@ -19,11 +19,11 @@ export function getUser() {
         payload: user
     }
 }
-export function getClientData(api_key) {
+export function getClientData() {
     console.log('starting get client');
     const clientVisits = axios.get(`/api/getclientvisits`).then((response) => {
-        console.log(response.data);
-        return response.data[0].count
+        //console.log(response);
+        return response.data
 
     })
     return {

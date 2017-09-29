@@ -1,4 +1,4 @@
-insert into visits (auth_id, api_key, visitTime)
+insert into visits (trackerusers_id, visitTime)
 values 
-($1, $2, current_timestamp)
+($1, current_timestamp)
 returning *;

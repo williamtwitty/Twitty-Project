@@ -1,0 +1,38 @@
+
+
+.Login {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: #F5F5F5;
+    justify-content: center;
+    
+}
+
+.inner-login {
+    width: 70%;
+    height: 100vh;
+    border: 2px solid lightblue;
+}
+
+.logo {
+    display: inline-block;
+}
+
+.header {
+    display: flex;
+    height: 8vh;
+    width: 100%;
+    font-size: 25px;
+    background-color: #8FF2FF;
+    justify-content: space-between;
+    font-family: 'Montserrat';
+}
+
+.header button {
+    display:flex;
+    height: 8vh;
+    font-size: 15px;
+    font-family: 'Montserrat';
+    
+}

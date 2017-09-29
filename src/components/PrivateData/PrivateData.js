@@ -2,37 +2,39 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getUser, getClientData } from '../../ducks/reducer'
 import axios from 'axios'
+import './PrivateData.css'
 
 class PrivateData extends Component {
     constructor(props) {
         super(props)
         this.state = {
             user: {},
-          clientVisits:{}
+          clientVisits:[]
         }
       }
     
         componentDidMount() {
-            this.props.getUser();
+            //this.props.getUser();
             this.props.getClientData();
         }
         
-    //   componentDidMount() {
-    //       //this.props.getUser()
-        
-    //     axios.get('/api/getclientvisits').then((response) =>{
-    //       //console.log(response);
-    //       this.setState({
-    //         visits: response.data[0].count
-    //       })
-    //     })
-    //   }
+
 
     render() {
-       //console.log(this.props.clientVisits);
+       console.log(this.props.clientVisits);
         return (
-            <div>
-                Your total number of visits are: {this.props.clientVisits}
+            <div className="privatedata">
+                <div className="inner-privatedata">
+                    <div className="header-privatedata"> Twitty Tracker
+                        <a href='http://localhost:3005/auth/logout'><button>logout</button></a>
+                    </div>
+                    <div className="client-info">Client Information</div>
+                    <div className="visits-container">
+                    <div className="visits-privatedata"> Total visit count: <p>{this.props.clientVisits[0]}</p> </div>
+                    <div className="visits-privatedata"> Last seven days visit count: <p>{this.props.clientVisits[1]}</p>  </div>
+                    <div className="visits-privatedata"> Today's visit count:  <p>{this.props.clientVisits[2]}</p>  </div>
+                    </div>
+                </div>
             </div>
         );
     }
