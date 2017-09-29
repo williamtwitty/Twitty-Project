@@ -1,0 +1,45 @@
+.dashboard {
+    display: flex;
+    border: 2px solid lightcyan;
+    justify-content: center;
+}
+
+.inner-dashboard {
+    width: 70%;
+    height: 100vh;
+    background-color: #F5F5F5;
+    border: 2px solid lightcyan;
+}
+
+.header-dashboard {
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    border-bottom: 2px solid lightcyan;
+    font-size: 35px;
+    justify-content: center;
+    font-family: 'Montserrat';
+}
+
+.total-container {
+    width: 100%;
+    height: 8vh;
+    font-size: 25px;
+    background-color: lightcoral;  
+}
+
+.user-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 8vh;
+    border: 2px solid lightcyan;
+}
+.user-container .name {
+    width: 40%;
+    height: 8vh;
+    background-color: white;
+    font-size: 25px;
+}
+

@@ -28,7 +28,11 @@ class PrivateData extends Component {
                     <div className="header-privatedata"> Twitty Tracker
                         <a href='http://localhost:3005/auth/logout'><button>logout</button></a>
                     </div>
-                    <div className="client-info">Client Information</div>
+                    <div className="client-info">Client Information
+                        <div className="visits-privatedata">Username: <h3>{this.props.clientVisits[3]}</h3> </div>
+                        <div className="visits-privatedata"> <img src={this.props.clientVisits[4]} alt="user image"/> </div>
+                    </div>
+                        <div className="api-container">API KEY <h3>{this.props.clientVisits[5]}</h3> </div>
                     <div className="visits-container">
                     <div className="visits-privatedata"> Total visit count: <p>{this.props.clientVisits[0]}</p> </div>
                     <div className="visits-privatedata"> Last seven days visit count: <p>{this.props.clientVisits[1]}</p>  </div>
