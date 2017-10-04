@@ -1,18 +1,33 @@
+const iplocation = require('iplocation')
 module.exports = {
-    
+
   
     visit(req, res) {
-        console.log(req.body);
+        //console.log(req.connection.remoteAddress);
         const db = req.app.get('db')
         const { api_key } =req.body
-        // console.log(auth_id, api_key);
+        iplocation('184.190.9.88').then(ipinfo => {
+            //console.log('response',ipinfo);
+            // console.log(api_key);
             db.get_client_key([api_key]).then((userid) => {
-                console.log(userid);
-                db.visit(userid[0].id).then((response) => {
-
-                    console.log(response);
-            })
+                //console.log(userid);
+                db.visit([userid[0].id, ipinfo.country_name, ipinfo.region_name, ipinfo.city, ipinfo.zip_code, ipinfo.latitude, ipinfo.longitude])
+                .then((response) => {
+                    
+                    //console.log(response);
+                })
             }).catch((err) => { console.log(err)})
+        }).catch(err => {console.log(err);})
+    },
+    buttonClick(req, res) {
+        const db = req.app.get('db')
+        const { api_key } =req.body
+        // console.log(api_key);
+        db.get_client_key([api_key]).then((userid) => {
+            db.buttonclick(userid[0].id).then((response) => {
+                console.log(response);
+            })
+        }).catch((err) => { console.log(err)})
     },
 
     endVisit(req, res) {
@@ -42,7 +57,7 @@ module.exports = {
     },
 
     getClientVisits(req, res) {
-       // console.log('session:', req.session);
+      
         const db = req.app.get('db')
         if (req.session.passport.user) {
             Promise.all([db.get_client_visits(req.session.passport.user),

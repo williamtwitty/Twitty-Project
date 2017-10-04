@@ -7,6 +7,7 @@ const express = require('express')
     , Auth0Strategy = require('passport-auth0')
     , cors = require('cors')
     , KeyGenerator = require('uuid-key-generator')
+    , iplocation = require('iplocation')
 
 const app = express();
 app.use(cors())
@@ -88,7 +89,8 @@ passport.serializeUser(function(userId, done) {
  app.get('/api/getvisits', ctrl.getVisits)
  app.get('/api/getclientvisits', ctrl.getClientVisits)
  app.get('/api/getdashboard', ctrl.getDashboardVisits)
- app.post('/api/visit', ctrl.visit);
+ app.post('/api/visit', ctrl.visit)
+ app.post('/api/buttonclick', ctrl.buttonClick)
  app.put(`/api/endvisit/:id`, ctrl.endVisit)
 
 
