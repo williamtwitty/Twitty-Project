@@ -24,9 +24,15 @@
 .header-privatedata button {
     display:flex;
     height: 8vh;
-    font-size: 15px;
+    font-size: 20px;
     background-color: lightcyan;
     font-family: 'Montserrat';
+    margin-right: 5px;
+}
+.header-privatedata img {
+    display: flex;
+    height: 8vh;
+    width: 100px;
 }
 
 .client-info {
@@ -35,8 +41,12 @@
     justify-content: space-around;
     width: 100%;
     height: 15vh;
-    margin: 10px 0px 0px 0px;
-    border: 2px solid lightcoral;
+    margin: 10px 0px 20px 0px;
+    border: 2px solid lightcyan;
+}
+.client-info img {
+    height: 15vh;
+    width: 50%;
 }
 .visits-container {
     display: flex;

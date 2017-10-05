@@ -29,8 +29,8 @@
     font-family: 'Montserrat';
 }
 
-.header button {
-    display:flex;
+.inner-login button {
+
     height: 8vh;
     font-size: 15px;
     font-family: 'Montserrat';

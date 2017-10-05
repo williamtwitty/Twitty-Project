@@ -9,11 +9,11 @@ class Login extends Component {
                 <div className="inner-login">
                 <div className="header">
                     Twitty Tracker
-                <a href={process.env.REACT_APP_LOGIN}><button>Login/Register</button></a>
                 </div>
                 <div>
                 <img src={logo} alt="logo"/>
                 </div>
+                <div><a href={process.env.REACT_APP_LOGIN}><button>Login/Register</button></a></div>
                 </div>
             </div>
         );

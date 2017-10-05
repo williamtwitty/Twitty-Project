@@ -60,6 +60,7 @@ module.exports = {
       
         const db = req.app.get('db')
         if (req.session.passport.user) {
+            console.log(req.session);
             Promise.all([db.get_client_visits(req.session.passport.user),
                  db.get_week_visits(req.session.passport.user),
                   db.get_day_visits(req.session.passport.user),

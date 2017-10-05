@@ -56,7 +56,7 @@ passport.serializeUser(function(userId, done) {
  })
  
  passport.deserializeUser(function(userId, done) {
-     console.log('before call');
+     //console.log('before call');
      app.get('db').current_user([userId]).then( user => {
          //console.log(user);
          done(null, user[0])
@@ -71,8 +71,8 @@ passport.serializeUser(function(userId, done) {
  }))
  
  app.get('/auth/user', passport.authenticate('auth0'), (req, res) => {
-    //  console.log('session', req.session);
-     //console.log('req.user', req.user);
+    // console.log('session', req.session);
+    //  console.log('req.user', req.user);
      if (!req.user) {
          return res.status(404).send('User not found')
      } else {
