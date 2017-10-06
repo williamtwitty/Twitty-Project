@@ -14,7 +14,9 @@ module.exports = {
                 db.visit([userid[0].id, ipinfo.country_name, ipinfo.region_name, ipinfo.city, ipinfo.zip_code, ipinfo.latitude, ipinfo.longitude])
                 .then((response) => {
                     
-                    //console.log(response);
+                    //console.log('cool', response[0].id);
+                    res.status(200).json(response[0].id)
+                    
                 })
             }).catch((err) => { console.log(err)})
         }).catch(err => {console.log(err);})
@@ -32,7 +34,8 @@ module.exports = {
 
     endVisit(req, res) {
         const db = req.app.get('db')
-        db.endvisit([req.params.id]).then(() => {
+        console.log('number', req.params.id);
+        db.endvisit([parseInt(req.params.id)]).then(() => {
             console.log('end response');
             
         }).catch((err) => { console.log(err)})

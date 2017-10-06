@@ -8,8 +8,13 @@ const express = require('express')
     , cors = require('cors')
     , KeyGenerator = require('uuid-key-generator')
     , iplocation = require('iplocation')
+    , axios = require('axios')
+
 
 const app = express();
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+
 app.use(cors())
 app.use(session({
     secret: process.env.SECRET,
@@ -84,6 +89,9 @@ passport.serializeUser(function(userId, done) {
      req.logOut()
      res.redirect(302, 'https://willtwitty.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F&client_id=QyMf8BepLfrc8bi4vjBBf3iuep8K00G5')
  })
+
+
+
  const ctrl = require('./controller/controller')
 
  app.get('/api/getvisits', ctrl.getVisits)
@@ -97,4 +105,19 @@ passport.serializeUser(function(userId, done) {
 
 
 const PORT = 3005
-app.listen(PORT, () => console.log('Ship has docked on port', PORT))
+server.listen(PORT, () => console.log('Ship has docked on port', PORT))
+
+
+
+ io.on('connection', function(socket) {
+    socket.emit('newUser', {newUserId: 'response[0].id'});
+    socket.on('visitId', function(visitId) {
+
+        socket.on('disconnect', function(socket) {
+
+            axios.put(`http://localhost:3005/api/endvisit/${visitId.visitId}`).catch(err => console.log(err))                
+
+        })
+    })
+        
+ })
