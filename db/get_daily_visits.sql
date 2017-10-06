@@ -1,2 +1,4 @@
 select distinct (date(visittime)) as unique_date, count(*) as amount 
-from visits group by unique_date order by unique_date asc
+from visits
+where trackerusers_id = $1
+ group by unique_date order by unique_date asc

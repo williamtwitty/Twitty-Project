@@ -54,7 +54,7 @@ module.exports = {
         db.get_dashboard_visits().then(response => {
             //console.log(response[0].user_name);
             //const newVal = [response[0], response[1], response[2], response[3], response[4]]
-            console.log(response);
+           // console.log(response);
             res.status(200).json(response)
     })
     },
@@ -63,7 +63,7 @@ module.exports = {
       
         const db = req.app.get('db')
         if (req.session.passport.user) {
-            console.log(req.session);
+           // console.log(req.session);
             Promise.all([db.get_client_visits(req.session.passport.user),
                  db.get_week_visits(req.session.passport.user),
                   db.get_day_visits(req.session.passport.user),
