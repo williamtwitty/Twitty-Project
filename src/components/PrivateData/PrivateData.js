@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getUser, getClientData } from '../../ducks/reducer'
 import axios from 'axios'
 import './PrivateData.css'
+import WorldMap from '../map/map'
 
 class PrivateData extends Component {
     constructor(props) {
@@ -42,6 +43,7 @@ class PrivateData extends Component {
                     <div className="visits-privatedata"> Last seven days visit count: <p>{this.props.clientVisits[1]}</p>  </div>
                     <div className="visits-privatedata"> Today's visit count:  <p>{this.props.clientVisits[2]}</p>  </div>
                     </div>
+                    <WorldMap/>
                 </div>
             </div>
         );
