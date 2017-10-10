@@ -35,14 +35,10 @@ passport.use(new Auth0Strategy({
     clientSecret: process.env.AUTH_CLIENT_SECRET,
     callbackURL: process.env.AUTH_CALLBACK
 }, function(accessToken, refreshToken, extraParams, profile, done) {
-    //console.log(profile);
-    //database reqs
     const db = app.get('db');
-       // console.log(profile); need this to check what we will need from the req object
-       //console.log('getting user from database');
+
     db.get_user([profile.identities[0].user_id]).then( user => {
-       //console.log(user);
-       //console.log('found user');
+
         if (user[0]) {
             done(null, user[0].id)
         } else {
@@ -56,14 +52,11 @@ passport.use(new Auth0Strategy({
 ))
 
 passport.serializeUser(function(userId, done) {
-    //console.log('serialize', userId);
      done(null, userId)
  })
  
  passport.deserializeUser(function(userId, done) {
-     //console.log('before call');
      app.get('db').current_user([userId]).then( user => {
-         //console.log(user);
          done(null, user[0])
      })
  })
@@ -71,13 +64,11 @@ passport.serializeUser(function(userId, done) {
  app.get('/auth', passport.authenticate('auth0'))
  
  app.get('/auth/callback', passport.authenticate('auth0', {
-     successRedirect: 'http://localhost:3000/#/privatedata',  // send to front end port
+     successRedirect: 'http://localhost:3000/#/privatedata',  
      failureRedirect: '/auth'
  }))
  
  app.get('/auth/user', passport.authenticate('auth0'), (req, res) => {
-    // console.log('session', req.session);
-    //  console.log('req.user', req.user);
      if (!req.user) {
          return res.status(404).send('User not found')
      } else {
@@ -97,6 +88,7 @@ passport.serializeUser(function(userId, done) {
  app.get('/api/getvisits', ctrl.getVisits)
  app.get('/api/getclientvisits', ctrl.getClientVisits)
  app.get('/api/getdashboard', ctrl.getDashboardVisits)
+ app.get('/api/getclientmapdata', ctrl.getClientMapData)
  app.post('/api/visit', ctrl.visit)
  app.post('/api/buttonclick', ctrl.buttonClick)
  app.put(`/api/endvisit/:id`, ctrl.endVisit)

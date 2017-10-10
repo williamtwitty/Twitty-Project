@@ -40,10 +40,12 @@ class PrivateData extends Component {
                         <div className="api-container">API KEY <h3>{this.props.clientVisits[5]}</h3> </div>
                     <div className="visits-container">
                     <div className="visits-privatedata"> Total visit count: <p>{this.props.clientVisits[0]}</p> </div>
-                    <div className="visits-privatedata"> Last seven days visit count: <p>{this.props.clientVisits[1]}</p>  </div>
+                    <div className="visits-privatedata"> Last weeks visit count: <p>{this.props.clientVisits[1]}</p>  </div>
                     <div className="visits-privatedata"> Today's visit count:  <p>{this.props.clientVisits[2]}</p>  </div>
+                    <div className="visits-privatedata"> Average visit time:  
+                        <p>{this.props.clientVisits[6]}:{this.props.clientVisits[7]} </p>  </div>
                     </div>
-                    <WorldMap/>
+                    <WorldMap />
                 </div>
             </div>
         );
