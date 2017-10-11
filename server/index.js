@@ -89,6 +89,7 @@ passport.serializeUser(function(userId, done) {
  app.get('/api/getclientvisits', ctrl.getClientVisits)
  app.get('/api/getdashboard', ctrl.getDashboardVisits)
  app.get('/api/getclientmapdata', ctrl.getClientMapData)
+ app.get('/api/getallmapdata', ctrl.getAllMapData)
  app.post('/api/visit', ctrl.visit)
  app.post('/api/buttonclick', ctrl.buttonClick)
  app.put(`/api/endvisit/:id`, ctrl.endVisit)

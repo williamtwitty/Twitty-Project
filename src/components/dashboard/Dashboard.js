@@ -3,6 +3,7 @@ import axios from 'axios'
 import { getDashboardVisits } from '../../ducks/reducer'
 import { connect } from 'react-redux'
 import './Dashboard.css'
+import DashMap from './DashMap'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -41,6 +42,7 @@ class Dashboard extends Component {
                 <div>
                   {dashboardUsersList}
                 </div>
+              <DashMap/>
             </div>
           </div>
         )

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { HashRouter, Route} from 'react-router-dom'
 import Login from './components/Login/Login'
-import axios from 'axios'
 import Dashboard from './components/dashboard/Dashboard'
 import PrivateData from './components/PrivateData/PrivateData'
 

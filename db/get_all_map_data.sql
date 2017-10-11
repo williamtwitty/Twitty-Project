@@ -1,0 +1,1 @@
+select trackerusers_id,state, city, latitude, longitude from visits;

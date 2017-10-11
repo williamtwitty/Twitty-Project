@@ -6,7 +6,8 @@ module.exports = {
         //console.log(req.connection.remoteAddress);
         const db = req.app.get('db')
         const { api_key } =req.body
-        iplocation('184.171.2.1').then(ipinfo => {
+        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+        iplocation(ip).then(ipinfo => {
             //console.log('response',ipinfo);
             // console.log(api_key);
             db.get_client_key([api_key]).then((userid) => {
@@ -70,7 +71,7 @@ module.exports = {
                      console.log("YOOOOOOO", values);
                       const newValues = [values[0][0].count, values[1][0].count,
                        values[2][0].count, values[3][0].user_name, values[3][0].img,
-                        values[3][0].api_key, values[4][0].visits_age.minutes, values[4][0].visits_age.seconds]
+                        values[3][0].api_key, values[4][0].visits_age]
                       res.status(200).json(newValues)
                   })
 
@@ -91,9 +92,26 @@ module.exports = {
                     }
                     return result
                 })
-                console.log("YOOO", newVisits)
+                //console.log("YOOO", newVisits)
                 res.status(200).json(newVisits)
             })
         }
+    },
+    getAllMapData(req, res) {
+        const db = req.app.get('db')
+
+            db.get_all_map_data().then(visits => {
+                const mapVisits = visits.map(function(obj){
+                    var result = {
+                        user: obj.trackerusers_id,
+                        state: obj.state,
+                        city: obj.city,
+                        coordinates: [obj.longitude, obj.latitude]
+                    }
+                    return result
+                })
+                console.log("YOOO", mapVisits)
+                res.status(200).json(mapVisits)
+            })
     }
 }
