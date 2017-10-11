@@ -31,7 +31,7 @@ class PrivateData extends Component {
                                  <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021061378410/media/73393342893/small/1507079037270/enhance" alt= "colored logo"
                             /></a>
                          Your Private Website Data
-                        <a href='http://localhost:3005/auth/logout'><button>LOGOUT</button></a>
+                        <a href='/auth/logout'><button>LOGOUT</button></a>
                     </div>
                     <div className="client-info">Client Information
                         <div className="visits-privatedata">Username: <h3>{this.props.clientVisits[3]}</h3> </div>

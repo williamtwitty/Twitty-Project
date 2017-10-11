@@ -13,7 +13,7 @@ class Login extends Component {
                 <div>
                 <img src={logo} alt="logo"/>
                 </div>
-                <div><a href={process.env.REACT_APP_LOGIN}><button>Login/Register</button></a></div>
+                <div><a href={'/auth'}><button>Login/Register</button></a></div>
                 </div>
             </div>
         );
