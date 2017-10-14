@@ -13,7 +13,7 @@ class Login extends Component {
                 <div>
                 <img src={logo} alt="logo"/>
                 </div>
-                <div><a href={'/auth'}><button>Login/Register</button></a></div>
+                <div><a href={'http://localhost:3005/auth'}><button>Login/Register</button></a></div>
                 </div>
             </div>
         );

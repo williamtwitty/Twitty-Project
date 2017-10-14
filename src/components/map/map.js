@@ -44,7 +44,7 @@ class WorldMap extends Component {
     return (
       
       <div className="mapbox">
-        <svg width={ 750 } height={ 400 } viewBox="70 40 150 120">
+        <svg width={ 850 } height={ 500 } viewBox="70 45 150 120">
         <g className="counties">
           {
             this.state.countrydata.map((d,i) => (

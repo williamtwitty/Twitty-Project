@@ -2,18 +2,22 @@
     display: flex;
     border: 2px solid lightcyan;
     justify-content: center;
+    background-color: black;
+    font: blue;
+    height: 180vh
 }
 
 .inner-privatedata {
-    width: 70%;
-    background-color: #F5F5F5;
+    width: 80%;
+    background-color: rgb(46, 52, 57);
     border: 2px solid lightcyan;
+    margin-top: 10px;
 }
 
 .header-privatedata {
     display: flex;
     width: 100%;
-    height: 8vh;
+    height: 12vh;
     border-bottom: 2px solid lightcyan;
     font-size: 35px;
     justify-content: space-between;
@@ -22,15 +26,15 @@
 
 .header-privatedata button {
     display:flex;
-    height: 8vh;
+    height: 10vh;
     font-size: 20px;
     background-color: lightcyan;
     font-family: 'Montserrat';
-    margin-right: 5px;
+    margin: 5px;
 }
 .header-privatedata img {
     display: flex;
-    height: 8vh;
+    height: 12vh;
     width: 100px;
 }
 
@@ -39,34 +43,48 @@
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
-    height: 15vh;
+    height: 12vh;
     margin: 10px 0px 20px 0px;
     border: 2px solid lightcyan;
 }
 .client-info img {
     height: 15vh;
-    width: 50%;
+    width: 100%;
+}
+.first-container {
+    display: flex;
+    width: 100%;
+    height: 60vh;
+    flex-direction: row;
 }
 .visits-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
-    width: 100%;
-    height: 15vh;
-    margin: 10px 0px 0px 0px;
+    width: 20%;
+    height: 60vh;
 }
 
 .api-container {
-    width: 100%;
-    height: 8vh;
+    width: 60%;
+    height: 12vh;
     background-color: lightcoral;
 }
 
 .visits-privatedata {
-    width: 20%;
-    height: 15vh;
-    background-color: white;
+    width:90%;
+    height: 12vh;
+    background-color: rgb(136, 136, 136);
 }
+
 p {
+    font-weight: bold;
+    color:  white;
     font-size: 30px;
+}
+
+.map-container {
+    width: 100%;
+    height: 60vh;
+    border: 2px solid yellow;
 }

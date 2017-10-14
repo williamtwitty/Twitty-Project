@@ -31,22 +31,35 @@ class PrivateData extends Component {
                                  <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021061378410/media/73393342893/small/1507079037270/enhance" alt= "colored logo"
                             /></a>
                          Your Private Website Data
-                        <a href='/auth/logout'><button>LOGOUT</button></a>
+                        <a href='http://localhost:3005/auth/logout'><button>LOGOUT</button></a>
                     </div>
-                    <div className="client-info">Client Information
+                    <div className="client-info">
                         <div className="visits-privatedata">Username: <h3>{this.props.clientVisits[3]}</h3> </div>
-                        <div className="visits-privatedata"> <img src={this.props.clientVisits[4]} alt="user "/> </div>
-                    </div>
+            
                         <div className="api-container">API KEY <h3>{this.props.clientVisits[5]}</h3> </div>
+                    </div>
+                    <div className="first-container">
+
                     <div className="visits-container">
-                    <div className="visits-privatedata"> Total visit count: <p>{this.props.clientVisits[0]}</p> </div>
-                    <div className="visits-privatedata"> Last weeks visit count: <p>{this.props.clientVisits[1]}</p>  </div>
-                    <div className="visits-privatedata"> Today's visit count:  <p>{this.props.clientVisits[2]}</p>  </div>
-                    <div className="visits-privatedata"> Average visit time:
-                        (hr:min:sec)  
+                    <div className="visits-privatedata"> Total view count:
+                         <p>{this.props.clientVisits[0]}</p> </div>
+                    <div className="visits-privatedata"> Last weeks view count: <p>{this.props.clientVisits[1]}</p>  </div>
+                    <div className="visits-privatedata"> Today's view count:  <p>{this.props.clientVisits[2]}</p>  </div>
+                    <div className="visits-privatedata"> Average visit time:(hr:min:sec)  
                         <p>{this.props.clientVisits[6]} </p>  </div>
                     </div>
-                    <WorldMap />
+                    <div className="visits-container">
+                       <div className="visits-privatedata"> Max views  <p>{this.props.clientVisits[7]}</p>  </div>
+                       <div className="visits-privatedata"> Distinct Visiters  <p>{this.props.clientVisits[9]}</p>  </div>
+                       <div className="visits-privatedata"> Percent of one time  <p>{this.props.clientVisits[8]/this.props.clientVisits[9] * 100}%</p>  </div>
+                       <div className="visits-privatedata"> Online users  <p>{this.props.clientVisits[10]}</p>  </div>
+                    </div>
+                    </div>
+                        <div className="map-container">
+                        <WorldMap />
+                        </div>
+   
+                   
                 </div>
             </div>
         );

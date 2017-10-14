@@ -6,13 +6,17 @@ module.exports = {
         //console.log(req.connection.remoteAddress);
         const db = req.app.get('db')
         const { api_key } =req.body
-        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+        //var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+        //var ip = '184.190.2.80'
+        var ip =  '184.190.9.88'  
+        //var ip = '184.171.2.1'
+        // var ip = '184.190.72.1'
         iplocation(ip).then(ipinfo => {
-            //console.log('response',ipinfo);
+            console.log('response',ipinfo);
             // console.log(api_key);
             db.get_client_key([api_key]).then((userid) => {
                 //console.log(userid);
-                db.visit([userid[0].id, ipinfo.country_name, ipinfo.region_name, ipinfo.city, ipinfo.zip_code, ipinfo.latitude, ipinfo.longitude])
+                db.visit([userid[0].id, ipinfo.country_name, ipinfo.region_name, ipinfo.city, ipinfo.zip_code, ipinfo.latitude, ipinfo.longitude, ipinfo.ip])
                 .then((response) => {
                     
                     //console.log('cool', response[0].id);
@@ -66,12 +70,19 @@ module.exports = {
                  db.get_week_visits(req.session.passport.user),
                   db.get_day_visits(req.session.passport.user),
                   db.current_user(req.session.passport.user),
-                    db.get_avg_visit_time(req.session.passport.user)])
+                    db.get_avg_visit_time(req.session.passport.user),
+                    db.get_client_max_visits(req.session.passport.user),
+                    db.get_client_onetime_visits(req.session.passport.user),
+                    db.get_distinct_visiters(req.session.passport.user),
+                    db.get_client_online_users(req.session.passport.user)])
                   .then(values => {
-                     console.log("YOOOOOOO", values);
+                     console.log("YOOOOOOO", values[7][0].count);
+                     const arr = values[5]
                       const newValues = [values[0][0].count, values[1][0].count,
                        values[2][0].count, values[3][0].user_name, values[3][0].img,
-                        values[3][0].api_key, values[4][0].visits_age]
+                        values[3][0].api_key, values[4][0].visits_age,
+                         arr.length === 0 ? 0 : values[5][0].amount, values[6].length, values[7][0].count,
+                        values[8][0].count ]
                       res.status(200).json(newValues)
                   })
 

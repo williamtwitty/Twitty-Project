@@ -64,7 +64,7 @@ passport.serializeUser(function(userId, done) {
  app.get('/auth', passport.authenticate('auth0'))
  
  app.get('/auth/callback', passport.authenticate('auth0', {
-     successRedirect: 'http://localhost:3005/#/privatedata',  
+     successRedirect: 'http://localhost:3000/#/privatedata',  
      failureRedirect: '/auth'
  }))
  
@@ -78,7 +78,7 @@ passport.serializeUser(function(userId, done) {
  
  app.get('/auth/logout', (req, res) => {
      req.logOut()
-     res.redirect(302, 'https://willtwitty.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3005%2F&client_id=QyMf8BepLfrc8bi4vjBBf3iuep8K00G5')
+     res.redirect(302, 'https://willtwitty.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost%3A3000%2F&client_id=QyMf8BepLfrc8bi4vjBBf3iuep8K00G5')
  })
 
 
