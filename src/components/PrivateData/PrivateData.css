@@ -4,7 +4,6 @@
     justify-content: center;
     background-color: black;
     font: blue;
-    height: 180vh
 }
 
 .inner-privatedata {
@@ -87,4 +86,10 @@ p {
     width: 100%;
     height: 60vh;
     border: 2px solid yellow;
+}
+
+.pie-container {
+    width: 50%;
+    height: 55vh;
+    border: 2px solid red;
 }

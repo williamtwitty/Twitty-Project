@@ -1,18 +1,17 @@
-
 import React, { Component } from "react"
 import { geoMercator, geoPath } from "d3-geo"
 import { feature } from "topojson-client"
 import countryData from "./us-110m"
 import { connect } from 'react-redux'
-import { getClientMapData } from '../../ducks/reducer'
-import "./map.css"
+import { getOnlineMapData } from '../../ducks/reducer'
 
-class WorldMap extends Component {
+
+class OnlineMap extends Component {
   constructor() {
     super()
     this.state = {
       countrydata: [],
-      clientMapData: []
+      onlineMapData: []
     }
     this.handleMarkerClick = this.handleMarkerClick.bind(this)
   }
@@ -23,10 +22,10 @@ class WorldMap extends Component {
   }
 
   handleMarkerClick(i) {
-    console.log("Marker: ", this.props.clientMapData[i].city)
+    console.log("Marker: ", this.props.onlineMapData[i].city)
   }
   componentDidMount() {
-    this.props.getClientMapData();
+    this.props.getOnlineMapData();
 
     this.setState({
       countrydata: feature(countryData, countryData.objects.states).features
@@ -56,14 +55,14 @@ class WorldMap extends Component {
 
         <g className="markers">
           {
-            this.props.clientMapData.map((visiter, i) => (
+            this.props.onlineMapData.map((visiter, i) => (
               <circle
                 key={ `marker-${i}` }
                 cx={ this.projection()(visiter.coordinates)[0] }
                 cy={ this.projection()(visiter.coordinates)[1] }
                 r={ 1 }
-                fill="#FF0000"
-                stroke="#FF0000"
+                fill="#42f445"
+                stroke="#42f445"
                 className="marker"
                 onClick={ () => this.handleMarkerClick(i) }
               />
@@ -77,9 +76,8 @@ class WorldMap extends Component {
 }
 function mapStateToProps(state){
   return {
-     clientMapData: state.clientMapData
+     onlineMapData: state.onlineMapData
   }
 }
 
-export default connect(mapStateToProps, {getClientMapData})(WorldMap);
-
+export default connect(mapStateToProps, {getOnlineMapData})(OnlineMap);

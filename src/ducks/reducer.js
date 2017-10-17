@@ -5,7 +5,8 @@ const initialState = {
     clientVisits: [],
     dashboardVisits: [],
     clientMapData: [],
-    allMapData: []
+    allMapData: [],
+    onlineMapData: []
 
 }
 
@@ -14,6 +15,7 @@ const GET_CLIENT_VISITS = 'GET_CLIENT_VISITS'
 const GET_DASHBOARD_VISITS = 'GET_DASHBOARD_VISITS'
 const GET_CLIENT_MAP_DATA = 'GET_CLIENT_MAP_DATA'
 const GET_ALL_MAP_DATA = 'GET_ALL_MAP_DATA'
+const GET_ONLINE_MAP_DATA = 'GET_ONLINE_MAP_DATA'
 
 export function getUser() {
     const user = axios.get('/auth/user').then( res => {
@@ -65,6 +67,15 @@ export function getAllMapData() {
         payload: allMapData
     }
 }
+export function getOnlineMapData() {
+    const onlineMapData = axios.get(`/api/getonlinemapdata`).then((response) => {
+        return response.data
+    })
+    return {
+        type: GET_ONLINE_MAP_DATA,
+        payload: onlineMapData
+    }
+}
 
 
 export default function reducer(state=initialState, action) {
@@ -83,6 +94,9 @@ export default function reducer(state=initialState, action) {
 
         case GET_ALL_MAP_DATA + '_FULFILLED':
             return Object.assign({}, state, {allMapData: action.payload})
+
+        case GET_ONLINE_MAP_DATA + '_FULFILLED':
+            return Object.assign({}, state, {onlineMapData: action.payload})
 
         default:
             return state;

@@ -124,5 +124,23 @@ module.exports = {
                 console.log("YOOO", mapVisits)
                 res.status(200).json(mapVisits)
             })
-    }
+    },
+    getOnlineMapData(req, res) {
+        const db = req.app.get('db')
+        if (req.session.passport.user) {
+            db.get_online_map_data(req.session.passport.user).then(onlineUsers => {
+
+                const online = onlineUsers.map(function(obj){
+                    var result = {
+                        state: obj.state,
+                        city: obj.city,
+                        coordinates: [obj.longitude, obj.latitude]
+                    }
+                    return result
+                })
+                //console.log("YOOO", newVisits)
+                res.status(200).json(online)
+            })
+        }
+    },
 }

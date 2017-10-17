@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { getUser, getClientData } from '../../ducks/reducer'
 import './PrivateData.css'
 import WorldMap from '../map/map'
+import OnlineMap from '../map/onlineMap'
+import PieChart from '../chart/piechart'
 
 
 class PrivateData extends Component {
@@ -15,14 +17,17 @@ class PrivateData extends Component {
       }
     
         componentDidMount() {
-            //this.props.getUser();
             this.props.getClientData();
         }
         
 
 
     render() {
-       console.log(this.props.clientVisits);
+        // console.log(this.props.clientVisits, 'hi');
+    //    const pieChart =  this.props.clientVisits.map((nums, i) => {
+    //        return <div key={i}><PieChart returning={this.props.clientVisits[9]} onetime={this.props.clientVisits[8]}  /> {i}</div>
+    //    })
+        console.log(this.props.clientVisits[9], this.props.clientVisits[8]);
         return (
             <div className="privatedata">
                 <div className="inner-privatedata">
@@ -54,11 +59,17 @@ class PrivateData extends Component {
                        <div className="visits-privatedata"> Percent of one time  <p>{this.props.clientVisits[8]/this.props.clientVisits[9] * 100}%</p>  </div>
                        <div className="visits-privatedata"> Online users  <p>{this.props.clientVisits[10]}</p>  </div>
                     </div>
+                    <div className="pie-container">
+                       {/* {pieChart}   */}
+                        {this.props.clientVisits[9] ?<PieChart returning={this.props.clientVisits[9]} onetime={this.props.clientVisits[8]}  />: null }
+                    </div>
                     </div>
                         <div className="map-container">
                         <WorldMap />
                         </div>
-   
+                        <div className="map-container">
+                        <OnlineMap />
+                        </div>
                    
                 </div>
             </div>
