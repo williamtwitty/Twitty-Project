@@ -8,7 +8,7 @@ import { RadialChart, ArcSeries, ArcLabel } from '@data-ui/radial-chart';
 
 
 
-        const colorScale = scaleOrdinal({ range: ['#ffffff', '#4899f1'] });
+        const colorScale = scaleOrdinal({ range: ['#a3ffe0', '#4899f1'] });
       // const data = [{ label: 'Returning Visiters', value: 200 }, { label: 'One Time Visiters', value: 150 }];
        
        export default class PieChart extends Component { 
@@ -32,12 +32,14 @@ import { RadialChart, ArcSeries, ArcLabel } from '@data-ui/radial-chart';
     const data = [{ label: 'Returning Visiters', value: +this.props.returning }, { label: 'One Time Visiters', value: this.props.onetime }];
     console.log(this.props, 'test');
   return (
+    <div>
+    <h4>Returning vs. One time Visiters</h4>
   <div style={{ display: 'flex', alignItems: 'center' }}>
     <RadialChart
-      ariaLabel="This is a radial-chart chart of..."
+      ariaLabel="Returning vs. One Time Visiters"
       width={500}
       height={500}
-      margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+      margin={{ top: 80, right: 0, bottom: 0, left: 0 }}
       renderTooltip={({ event, datum, data, fraction }) => (
         <div>
           <strong>{datum.label}</strong>
@@ -64,8 +66,10 @@ import { RadialChart, ArcSeries, ArcLabel } from '@data-ui/radial-chart';
       shape="rect"
       fill={({ datum }) => colorScale(datum)}
       labelFormat={label => label}
+
       
     />
+  </div>
   </div>
 ); 
   }

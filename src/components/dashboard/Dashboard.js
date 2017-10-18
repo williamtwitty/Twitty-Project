@@ -10,6 +10,7 @@ class Dashboard extends Component {
         super(props)
         this.state = {
           visits:[],
+          clients:[],
           dashboardVisits:[]
         }
       }
@@ -23,11 +24,17 @@ class Dashboard extends Component {
             visits: response.data[0].count
           })
         })
+        axios.get('/api/getclients').then((clientTotal) =>{
+          //console.log(response);
+          this.setState({
+            clients: clientTotal.data[0].count
+          })
+        })
       }
        
       render() {
     //console.log(this.state.visits);
-    console.log(this.props.dashboardVisits, 'fffff');
+    //console.log(this.props.dashboardVisits, 'fffff');
     const dashboardUsersList = this.props.dashboardVisits.map((user, i) => {
      // console.log(user);
       return <div className="user-container" key= {i}> <div className="name"> { user.user_name } </div>
@@ -38,7 +45,10 @@ class Dashboard extends Component {
           <div className="dashboard">
             <div className="inner-dashboard">
               <div className="header-dashboard">Twitty Tracker Dashboard</div>
+              <div className="totals">
+              <div className="total-container">Total Clients: {this.state.clients}</div>
               <div className="total-container">Total Visits from all Clients: {this.state.visits}</div>
+              </div>
                 <div>
                   {dashboardUsersList}
                 </div>

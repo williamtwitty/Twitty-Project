@@ -33,7 +33,7 @@ class OnlineMap extends Component {
        
   }
   render() {
-    console.log("plz work", this.props.clientMapData );
+
     return (
       
       <div className="mapbox">
@@ -61,8 +61,8 @@ class OnlineMap extends Component {
                 cx={ this.projection()(visiter.coordinates)[0] }
                 cy={ this.projection()(visiter.coordinates)[1] }
                 r={ 1 }
-                fill="#42f445"
-                stroke="#42f445"
+                fill="#a3ffe0"
+                stroke="#a3ffe0"
                 className="marker"
                 onClick={ () => this.handleMarkerClick(i) }
               />

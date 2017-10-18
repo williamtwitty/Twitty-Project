@@ -12,14 +12,20 @@ class PrivateData extends Component {
         super(props)
         this.state = {
             user: {},
-          clientVisits:[]
+          clientVisits:[],
+          toggleMap: true
         }
+        this.handleClick = this.handleClick.bind(this)
       }
     
         componentDidMount() {
             this.props.getClientData();
         }
-        
+        handleClick() {
+            this.setState(prevState => ({
+                toggleMap: !prevState.toggleMap
+            }))
+        }
 
 
     render() {
@@ -39,38 +45,40 @@ class PrivateData extends Component {
                         <a href='http://localhost:3005/auth/logout'><button>LOGOUT</button></a>
                     </div>
                     <div className="client-info">
-                        <div className="visits-privatedata">Username: <h3>{this.props.clientVisits[3]}</h3> </div>
+                        <div className="username-container">Username: <p>{this.props.clientVisits[3]}</p> </div>
             
-                        <div className="api-container">API KEY <h3>{this.props.clientVisits[5]}</h3> </div>
+                        <div className="api-container">PRIVATE API KEY: <h4>{this.props.clientVisits[5]}</h4> </div>
                     </div>
                     <div className="first-container">
-
-                    <div className="visits-container">
-                    <div className="visits-privatedata"> Total view count:
-                         <p>{this.props.clientVisits[0]}</p> </div>
-                    <div className="visits-privatedata"> Last weeks view count: <p>{this.props.clientVisits[1]}</p>  </div>
-                    <div className="visits-privatedata"> Today's view count:  <p>{this.props.clientVisits[2]}</p>  </div>
-                    <div className="visits-privatedata"> Average visit time:(hr:min:sec)  
-                        <p>{this.props.clientVisits[6]} </p>  </div>
+                        
+                        <div className="visits-container">
+                            <div className="visits-privatedata"> Total view count:
+                                 <p>{this.props.clientVisits[0]}</p> </div>
+                            <div className="visits-privatedata"> Last weeks view count: <p>{this.props.clientVisits[1]}</p>  </div>
+                            <div className="visits-privatedata"> Today's view count:  <p>{this.props.clientVisits[2]}</p>  </div>
+                            <div className="visits-privatedata"> Avg. Visit Duration: <p>{this.props.clientVisits[6]} </p>  </div>
+                        {/* </div>
+                         <div className="visits-container"> */}
+                            <div className="visits-privatedata"> Most Single Day views  <p>{this.props.clientVisits[7]}</p>  </div>
+                            <div className="visits-privatedata"> Number of Visiters  <p>{this.props.clientVisits[9]}</p>  </div>
+                            <div className="visits-privatedata"> One Time Visiters  <p>{this.props.clientVisits[8]}</p>  </div>
+                            <div className="visits-privatedata"> Online users  <p>{this.props.clientVisits[10]}</p>  </div>
+                        </div>
+                        
+                        <div className="pie-container">
+                            {this.props.clientVisits[9] ?<PieChart returning={this.props.clientVisits[9]- this.props.clientVisits[8]} onetime={this.props.clientVisits[8]}  />: null }
+                        </div>
                     </div>
-                    <div className="visits-container">
-                       <div className="visits-privatedata"> Max views  <p>{this.props.clientVisits[7]}</p>  </div>
-                       <div className="visits-privatedata"> Distinct Visiters  <p>{this.props.clientVisits[9]}</p>  </div>
-                       <div className="visits-privatedata"> Percent of one time  <p>{this.props.clientVisits[8]/this.props.clientVisits[9] * 100}%</p>  </div>
-                       <div className="visits-privatedata"> Online users  <p>{this.props.clientVisits[10]}</p>  </div>
-                    </div>
-                    <div className="pie-container">
-                       {/* {pieChart}   */}
-                        {this.props.clientVisits[9] ?<PieChart returning={this.props.clientVisits[9]} onetime={this.props.clientVisits[8]}  />: null }
-                    </div>
-                    </div>
+                    <div className="toggle-button">
+                        <button onClick={this.handleClick}> View Online Users </button>
+                        </div>
+                            {this.state.toggleMap ? 
                         <div className="map-container">
                         <WorldMap />
-                        </div>
+                        </div>:
                         <div className="map-container">
                         <OnlineMap />
-                        </div>
-                   
+                        </div>}
                 </div>
             </div>
         );

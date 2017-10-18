@@ -60,6 +60,12 @@ module.exports = {
             res.status(200).json(response)
     })
     },
+    getClients(req, res) {
+        const db = req.app.get('db')
+        db.get_clients().then(response => {
+            res.status(200).json(response)
+        })
+    },
 
     getClientVisits(req, res) {
       
@@ -76,7 +82,7 @@ module.exports = {
                     db.get_distinct_visiters(req.session.passport.user),
                     db.get_client_online_users(req.session.passport.user)])
                   .then(values => {
-                     console.log("YOOOOOOO", values[7][0].count);
+                     //console.log("YOOOOOOO", values[5][0].amount);
                      const arr = values[5]
                       const newValues = [values[0][0].count, values[1][0].count,
                        values[2][0].count, values[3][0].user_name, values[3][0].img,
@@ -121,7 +127,7 @@ module.exports = {
                     }
                     return result
                 })
-                console.log("YOOO", mapVisits)
+               // console.log("YOOO", mapVisits)
                 res.status(200).json(mapVisits)
             })
     },

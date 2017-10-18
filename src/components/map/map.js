@@ -62,8 +62,8 @@ class WorldMap extends Component {
                 cx={ this.projection()(visiter.coordinates)[0] }
                 cy={ this.projection()(visiter.coordinates)[1] }
                 r={ 1 }
-                fill="#FF0000"
-                stroke="#FF0000"
+                fill="#2d92ff"
+                stroke="#2d92ff"
                 className="marker"
                 onClick={ () => this.handleMarkerClick(i) }
               />
