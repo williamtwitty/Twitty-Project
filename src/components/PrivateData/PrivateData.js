@@ -52,11 +52,11 @@ class PrivateData extends Component {
                     <div className="first-container">
                         
                         <div className="visits-container">
-                            <div className="visits-privatedata"> Total view count:
+                            <div className="visits-privatedata"> Total view count
                                  <p>{this.props.clientVisits[0]}</p> </div>
-                            <div className="visits-privatedata"> Last weeks view count: <p>{this.props.clientVisits[1]}</p>  </div>
-                            <div className="visits-privatedata"> Today's view count:  <p>{this.props.clientVisits[2]}</p>  </div>
-                            <div className="visits-privatedata"> Avg. Visit Duration: <p>{this.props.clientVisits[6]} </p>  </div>
+                            <div className="visits-privatedata"> Last weeks view count <p>{this.props.clientVisits[1]}</p>  </div>
+                            <div className="visits-privatedata"> Today's view count  <p>{this.props.clientVisits[2]}</p>  </div>
+                            <div className="visits-privatedata"> Avg Visit Duration <p>{this.props.clientVisits[6]} </p>  </div>
                         {/* </div>
                          <div className="visits-container"> */}
                             <div className="visits-privatedata"> Most Single Day views  <p>{this.props.clientVisits[7]}</p>  </div>
@@ -69,8 +69,10 @@ class PrivateData extends Component {
                             {this.props.clientVisits[9] ?<PieChart returning={this.props.clientVisits[9]- this.props.clientVisits[8]} onetime={this.props.clientVisits[8]}  />: null }
                         </div>
                     </div>
-                    <div className="toggle-button">
-                        <button onClick={this.handleClick}> View Online Users </button>
+                    <div className="toggle-button"> 
+                    {this.state.toggleMap ? 
+                        <button onClick={this.handleClick}> View Online Users </button> : <button onClick={this.handleClick}> View All Users </button>
+                    }
                         </div>
                             {this.state.toggleMap ? 
                         <div className="map-container">

@@ -7,10 +7,13 @@ module.exports = {
         const db = req.app.get('db')
         const { api_key } =req.body
         //var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
-        //var ip = '184.190.2.80'
-        var ip =  '184.190.9.88'  
-        //var ip = '184.171.2.1'
-        // var ip = '184.190.72.1'
+        // var ip = '184.172.9.22' //dallas
+        // var ip = '184.173.9.22' //houston
+        // var ip = '184.174.9.22' //denver
+        // var ip = '184.190.2.80' // tempe
+        // var ip = '184.171.2.1' //oregon
+        // var ip = '184.190.72.1' // new orleans
+        var ip =  '184.190.9.88' 
         iplocation(ip).then(ipinfo => {
             console.log('response',ipinfo);
             // console.log(api_key);
