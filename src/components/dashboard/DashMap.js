@@ -12,12 +12,7 @@ class DashMap extends Component {
     this.state = {
       countrydata: [],
       allMapData: []
-      // cities: [
 
-      //   { name: "New York",       coordinates: [-74.0059,40.7128],  population: 20630000 },
-      //   { name: "Los Angeles",    coordinates: [-118.2437,34.0522], population: 15058000 }
-      
-      // ],
     }
     this.handleMarkerClick = this.handleMarkerClick.bind(this)
   }

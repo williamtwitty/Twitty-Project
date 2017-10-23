@@ -29,10 +29,7 @@ class PrivateData extends Component {
 
 
     render() {
-        // console.log(this.props.clientVisits, 'hi');
-    //    const pieChart =  this.props.clientVisits.map((nums, i) => {
-    //        return <div key={i}><PieChart returning={this.props.clientVisits[9]} onetime={this.props.clientVisits[8]}  /> {i}</div>
-    //    })
+
         console.log(this.props.clientVisits[9], this.props.clientVisits[8]);
         return (
             <div className="privatedata">
@@ -57,8 +54,7 @@ class PrivateData extends Component {
                             <div className="visits-privatedata"> Last weeks view count <p>{this.props.clientVisits[1]}</p>  </div>
                             <div className="visits-privatedata"> Today's view count  <p>{this.props.clientVisits[2]}</p>  </div>
                             <div className="visits-privatedata"> Avg Visit Duration <p>{this.props.clientVisits[6]} </p>  </div>
-                        {/* </div>
-                         <div className="visits-container"> */}
+
                             <div className="visits-privatedata"> Most Single Day views  <p>{this.props.clientVisits[7]}</p>  </div>
                             <div className="visits-privatedata"> Number of Visiters  <p>{this.props.clientVisits[9]}</p>  </div>
                             <div className="visits-privatedata"> One Time Visiters  <p>{this.props.clientVisits[8]}</p>  </div>

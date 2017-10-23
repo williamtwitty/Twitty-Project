@@ -3,28 +3,21 @@ module.exports = {
 
   
     visit(req, res) {
-        //console.log(req.connection.remoteAddress);
+    //console.log(req.connection.remoteAddress);
         const db = req.app.get('db')
         const { api_key } =req.body
-        //var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
-        // var ip = '184.172.9.22' //dallas
-        // var ip = '184.173.9.22' //houston
-        // var ip = '184.174.9.22' //denver
-        // var ip = '184.190.2.80' // tempe
-        // var ip = '184.171.2.1' //oregon
-        // var ip = '184.190.72.1' // new orleans
-        var ip =  '184.190.9.88' 
+
+        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+
         iplocation(ip).then(ipinfo => {
-            console.log('response',ipinfo);
-            // console.log(api_key);
+           // console.log('response',ipinfo);
+
             db.get_client_key([api_key]).then((userid) => {
                 //console.log(userid);
                 db.visit([userid[0].id, ipinfo.country_name, ipinfo.region_name, ipinfo.city, ipinfo.zip_code, ipinfo.latitude, ipinfo.longitude, ipinfo.ip])
-                .then((response) => {
-                    
+                .then((response) => { 
                     //console.log('cool', response[0].id);
                     res.status(200).json(response[0].id)
-                    
                 })
             }).catch((err) => { console.log(err)})
         }).catch(err => {console.log(err);})
@@ -35,7 +28,7 @@ module.exports = {
 
         db.get_client_key([api_key]).then((userid) => {
             db.buttonclick(userid[0].id).then((response) => {
-                console.log(response);
+             //   console.log(response);
             })
         }).catch((err) => { console.log(err)})
     },
@@ -85,14 +78,19 @@ module.exports = {
                     db.get_distinct_visiters(req.session.passport.user),
                     db.get_client_online_users(req.session.passport.user)])
                   .then(values => {
-                     //console.log("YOOOOOOO", values[5][0].amount);
                      const arr = values[5]
-                      const newValues = [values[0][0].count, values[1][0].count,
-                       values[2][0].count, values[3][0].user_name, values[3][0].img,
-                        values[3][0].api_key, values[4][0].visits_age,
-                         arr.length === 0 ? 0 : values[5][0].amount, values[6].length, values[7][0].count,
-                        values[8][0].count ]
-                      res.status(200).json(newValues)
+                      const newValues = [values[0][0].count,
+                                        values[1][0].count,
+                                        values[2][0].count,
+                                        values[3][0].user_name, 
+                                        values[3][0].img,
+                                        values[3][0].api_key,
+                                        values[4][0].visits_age,
+                                        arr.length === 0 ? 0 : values[5][0].amount, 
+                                        values[6].length, 
+                                        values[7][0].count,
+                                        values[8][0].count ]
+                        res.status(200).json(newValues)
                   })
 
         } else {
@@ -112,7 +110,7 @@ module.exports = {
                     }
                     return result
                 })
-                //console.log("YOOO", newVisits)
+
                 res.status(200).json(newVisits)
             })
         }
@@ -130,7 +128,7 @@ module.exports = {
                     }
                     return result
                 })
-               // console.log("YOOO", mapVisits)
+
                 res.status(200).json(mapVisits)
             })
     },
@@ -147,7 +145,7 @@ module.exports = {
                     }
                     return result
                 })
-                //console.log("YOOO", newVisits)
+
                 res.status(200).json(online)
             })
         }

@@ -111,7 +111,7 @@ server.listen(PORT, () => console.log('Ship has docked on port', PORT))
         socket.on('disconnect', function(socket) {
 
             axios.put(`http://localhost:3005/api/endvisit/${visitId.visitId}`)
-            //.catch(err => console.log(err))                
+            .catch(err => console.log(err))                
 
         })
     })

@@ -19,13 +19,11 @@ class Dashboard extends Component {
        this.props.getDashboardVisits();
         
         axios.get('/api/getvisits').then((response) =>{
-          //console.log(response);
           this.setState({
             visits: response.data[0].count
           })
         })
         axios.get('/api/getclients').then((clientTotal) =>{
-          //console.log(response);
           this.setState({
             clients: clientTotal.data[0].count
           })
@@ -33,8 +31,7 @@ class Dashboard extends Component {
       }
        
       render() {
-    //console.log(this.state.visits);
-    //console.log(this.props.dashboardVisits, 'fffff');
+        
     const dashboardUsersList = this.props.dashboardVisits.map((user, i) => {
      // console.log(user);
       return <div className="user-container" key= {i}> <div className="name"> { user.user_name } </div>

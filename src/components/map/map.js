@@ -5,7 +5,7 @@ import { feature } from "topojson-client"
 import countryData from "./us-110m"
 import { connect } from 'react-redux'
 import { getClientMapData } from '../../ducks/reducer'
-import "./map.css"
+
 
 class WorldMap extends Component {
   constructor() {
